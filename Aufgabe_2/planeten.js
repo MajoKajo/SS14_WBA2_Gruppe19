@@ -44,8 +44,7 @@ app.get('/planeten', function(req, res){
 	};
 
 	res.writeHead(200, "OK", {'Content-Type': 'text/html'});
- 	
- 	res.write('<script src=„http://code.jquery.com/jquery-1.11.0.min.js“></script>');
+ 
 	res.write("<table border=1>");
 	res.write("<tr><th>Planeten</th><th>Durchmesser</th><th>Entfernung Sonne</th></tr>");
 	planeten.forEach(function(planet){
@@ -54,45 +53,11 @@ app.get('/planeten', function(req, res){
 		
 	res.write("</table>");
 
-	res.write('<form action="/planeten" method="post">');
-	res.write('Planet: <input type="text" name="Planet"><br>');
-	res.write('Durchmesser: <input type="text" name="Durchmesser"><br>');
-	res.write('Entfernung_Sonne: <input type="text" name="Entfernung_Sonne"><br>'); 
-	res.write('<input type="submit" value="Los!">');
-	res.write('</form>');
-
 	res.end();
 });
 
 app.post('/planeten', function(req, res){
-	
-var body = '';
-
-	req.on('data',	function(data){	
-			body += data.toString();	
-	});	
-
-		
-	req.on('end', function(){
-	//body daten in json objekt
-	var daten  = querystring.parse(body);
-
-	if(typeof daten.Planet == 'string'){
-		planeten.push(daten);
-	};
-
-	});
-
-	$.ajax({
-		type: 'POST',
-		url: '/planeten',
-		data: JSON.stringify('data')
-		contentType: 'application/json'
-		}).done(function(){
-		alert(data.Planet+ ' wurde hinzugefügt.');
-		}).fail(function(e){
-		alert(data.Planet+ ' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
-	}); 
+	req.body();
 });
 	
 
