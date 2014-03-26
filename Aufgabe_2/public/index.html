@@ -1,9 +1,14 @@
 <html>
 <head>
-<script type="text/javascript" src=„http://code.jquery.com/jquery-1.11.0.min.js“>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<script>
  	$('#submit').click(function(){
 
- 		var data = 
+ 		event.preventDefault();
+
+ 		var data = {"Planet":$("#Planet").val(), "Durchmesser":$("#Durchmesser").val(), "Entfernung_Sonne":$("#Entfernung")};
 
   		$.ajax({
 			type: 'POST',
@@ -15,12 +20,11 @@
 			}).fail(function(e){
 			alert(data.Planet+ ' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
 		});
-		event.preventDefault();
+		
  	});
 
 </script>
-</head>
-<body>
+
  <form id="Formular" action="/planeten" method="post">
 Planet: <input id="Planet" type="text" name="Planet"><br>
 Durchmesser: <input id="Durchmesser" type="text" name="Durchmesser"><br>

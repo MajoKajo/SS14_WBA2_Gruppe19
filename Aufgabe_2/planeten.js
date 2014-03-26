@@ -15,7 +15,7 @@ var app = express();
 
 app.configure(function( ){
 	//Verzeichnis für den direkten Zugriff von außen freigeben
-	app.use(express.static(__dirname + ''));
+	app.use(express.static(__dirname + '/public'));
 
 	//benötigt um Informationen des Requests zu parsen
 	app.use(express.json());
@@ -45,7 +45,9 @@ app.get('/planeten', function(req, res){
 });
 
 app.post('/planeten', function(req, res){
-	
+	res.writeHead(200, "OK");
+	planeten.push(req.body);
+	res.end();
 });
 	
 
