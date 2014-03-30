@@ -1,14 +1,14 @@
 var express = require('express');
 
 var planeten = [ 
-{"Planet":"Merkur", "Durchmesser":"4.878 km", "Entfernung_Sonne":"46 - 70 Mio km"},
-{"Planet":"Venus", "Durchmesser":"12.103,6 km", "Entfernung_Sonne":"107,5 - 108,9 Mio km"},
-{"Planet":"Erde", "Durchmesser":"12.765,28 km", "Entfernung_Sonne":"147 - 152 Mio km"},
-{"Planet":"Mars", "Durchmesser":"6.794,4 km", "Entfernung_Sonne":"206,7 - 249,2 Mio km"},
-{"Planet":"Jupiter", "Durchmesser":"142.984 km", "Entfernung_Sonne":"740 - 815 Mio km"},
-{"Planet":"Saturn", "Durchmesser":"120.536 km", "Entfernung_Sonne":"1343 - 1509 Mio km"},
-{"Planet":"Uranus", "Durchmesser":"51.118 km", "Entfernung_Sonne":"2.735 - 3.005 Mio km"},
-{"Planet":"Neptun", "Durchmesser":"49.532 km", "Entfernung_Sonne":"4.456 - 4.537 Mio km"}
+{"Planet":"Merkur", "Durchmesser":"4.878", "Entfernung":"46 - 70 Mio"},
+{"Planet":"Venus", "Durchmesser":"12.103,6", "Entfernung":"107,5 - 108,9 Mio"},
+{"Planet":"Erde", "Durchmesser":"12.765,28", "Entfernung":"147 - 152 Mio"},
+{"Planet":"Mars", "Durchmesser":"6.794,4", "Entfernung":"206,7 - 249,2 Mio"},
+{"Planet":"Jupiter", "Durchmesser":"142.984", "Entfernung":"740 - 815 Mio"},
+{"Planet":"Saturn", "Durchmesser":"120.536", "Entfernung":"1343 - 1509 Mio"},
+{"Planet":"Uranus", "Durchmesser":"51.118", "Entfernung":"2.735 - 3.005 Mio"},
+{"Planet":"Neptun", "Durchmesser":"49.532", "Entfernung":"4.456 - 4.537 Mio"}
 ];
 
 var app = express(); 
@@ -34,12 +34,13 @@ app.get('/planeten', function(req, res){
 	res.writeHead(200, "OK", {'Content-Type': 'text/html'});
  
 	res.write("<table border=1>");
-	res.write("<tr><th>Planeten</th><th>Durchmesser</th><th>Entfernung Sonne</th></tr>");
+	res.write("<tr><th>Planeten</th><th>Durchmesser in km</th><th>Entfernung Sonne in km</th></tr>");
 	planeten.forEach(function(planet){
-		res.write("<tr><td>" +planet.Planet+ "</td><td>" +planet.Entfernung_Sonne+ "</td><td>" +planet.Durchmesser+ "</td></tr>");
+		res.write("<tr><td>" +planet.Planet+ "</td><td>" +planet.Entfernung+ "</td><td>" +planet.Durchmesser+ "</td></tr>");
 	});
 		
 	res.write("</table>");
+    res.write("<a href='/'>Zurueck</a>"); //Zurück zur Formulardatei
 
 	res.end();
 });

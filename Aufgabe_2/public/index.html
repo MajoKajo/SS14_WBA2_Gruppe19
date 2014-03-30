@@ -4,12 +4,24 @@
 </head>
 <body>
 <script>
- 	$('#submit').click(function(){
+    //jQuery Funktionen sollen erst ausgeführt werden, wenn komplettes Dokument geladen
+    $(document).ready(function(){ 
+    //Sobald auf Submit gedrückt wird, wird die FormularID angesprochen
+ 	$('#Formular').submit(function(){
 
+        //Default Methode aus Formular unterbinden
  		event.preventDefault();
 
- 		var data = {"Planet":$("#Planet").val(), "Durchmesser":$("#Durchmesser").val(), "Entfernung_Sonne":$("#Entfernung")};
+ 		//Eingegebene Daten aus dem Formular werden über die entsprechenden IDs gespeichert
+        var data = {
+            "Planet":$("#Planet").val(),
+            "Durchmesser":$("#Durchmesser").val(),
+            "Entfernung":$("#Entfernung").val()
+        };
 
+        //Der Webserver schickt eine Success-Response an den Client
+        //Bei Erfolg wird ein 'alert' ausgeben und Formularfelder geleert
+        //Bei Misserfolg wird ein missglückter 'alert' ausgegeben
   		$.ajax({
 			type: 'POST',
 			url: '/planeten',
@@ -17,19 +29,26 @@
 			contentType: 'application/json'
 			}).done(function(){
 			alert(data.Planet+ ' wurde hinzugefügt.');
+//            formular.Planet.val = "";
+//            formular.Durchmesser.val = "";
+//            formular.Entfernung.val = "";
+            $("#Formular")[0].clear();
 			}).fail(function(e){
 			alert(data.Planet+ ' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
 		});
 		
  	});
+});
 
 </script>
 
- <form id="Formular" action="/planeten" method="post">
-Planet: <input id="Planet" type="text" name="Planet"><br>
-Durchmesser: <input id="Durchmesser" type="text" name="Durchmesser"><br>
-Entfernung_Sonne: <input id="Entfernung" type="text" name="Entfernung_Sonne"><br>
-<input id="submit" type="submit" value="Los!">
-</form>
+    <form id="Formular" name="Formular" action="/planeten">
+        Planet: <input id="Planet" type="text" name="Planet"><br>
+        Durchmesser: <input id="Durchmesser" type="text" name="Durchmesser"><br>
+        Entfernung_Sonne: <input id="Entfernung" type="text" name="Entfernung"><br>
+        <input id="submit" type="submit" value="Los!">
+<!--        Direkter Link zur Tabelle-->
+        <a href="/planeten">Tabelle</a>
+    </form>
 </body>
 </html>
