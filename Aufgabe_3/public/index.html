@@ -1,0 +1,54 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<script>
+    //jQuery Funktionen sollen erst ausgeführt werden, wenn komplettes Dokument geladen
+    $(document).ready(function(){ 
+    //Sobald auf Submit gedrückt wird, wird die FormularID angesprochen
+ 	$('#Formular').submit(function(){
+
+        //Default Methode aus Formular unterbinden
+ 		event.preventDefault();
+
+ 		//Eingegebene Daten aus dem Formular werden über die entsprechenden IDs gespeichert
+        var data = {
+            "Planet":$("#Planet").val(),
+            "Durchmesser":$("#Durchmesser").val(),
+            "Entfernung":$("#Entfernung").val()
+        };
+
+        //Der Webserver schickt eine Success-Response an den Client
+        //Bei Erfolg wird ein 'alert' ausgeben und Formularfelder geleert
+        //Bei Misserfolg wird ein missglückter 'alert' ausgegeben
+  		$.ajax({
+			type: 'POST',
+			url: '/planeten',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+			}).done(function(){
+			alert(data.Planet+ ' wurde hinzugefügt.');
+//            formular.Planet.val = "";
+//            formular.Durchmesser.val = "";
+//            formular.Entfernung.val = "";
+            $("#Formular")[0].clear();
+			}).fail(function(e){
+			alert(data.Planet+ ' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
+		});
+		
+ 	});
+});
+
+</script>
+
+    <form id="Formular" name="Formular" action="/planeten">
+        Planet: <input id="Planet" type="text" name="Planet"><br>
+        Durchmesser: <input id="Durchmesser" type="text" name="Durchmesser"><br>
+        Entfernung_Sonne: <input id="Entfernung" type="text" name="Entfernung"><br>
+        <input id="submit" type="submit" value="Los!">
+<!--        Direkter Link zur Tabelle-->
+        <a href="/planeten">Tabelle</a>
+    </form>
+</body>
+</html>
