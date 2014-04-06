@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Planeten</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src='/faye/client.js'></script>
+<script>
+    //jQuery Funktionen sollen erst ausgeführt werden, wenn komplettes Dokument geladen
+    $(document).ready(function(){ 
+
+        //PubSub-Client wird erzeugt
+        var PubSub = new Faye.Client('/faye');
+                
+        //'planeten' Abonnement
+        PubSub.subscribe('/planeten', function(message) {
+            zeileEinfuegen(message);
+        });
+                
+        //Wenn auf "LOS!" gedrückt wird
+        $('#Formular').submit(function(event) {
+
+ 		//Eingegebene Daten aus dem Formular werden über die entsprechenden IDs gespeichert
+        var data = {
+            "Planet":$("#Planet").val(),
+            "Durchmesser":$("#Durchmesser").val(),
+            "Entfernung":$("#Entfernung").val()
+        };
+
+        //Der Webserver schickt eine Success-Response an den Client
+        //Bei Erfolg wird ein 'alert' ausgeben und Formularfelder geleert
+        //Bei Misserfolg wird ein missglückter 'alert' ausgegeben
+  		$.ajax({
+			type: 'POST',
+			url: '/planeten',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+			}).done(function(){
+			alert(data.Planet+ ' wurde hinzugefügt.');
+//            formular.Planet.val = "";
+//            formular.Durchmesser.val = "";
+//            formular.Entfernung.val = "";
+            $("#Formular")[0].clear();
+			}).fail(function(e){
+			alert(data.Planet+ ' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
+		});
+
+        //Default POST unterdruecken.
+        event.preventDefault();
+    });
+
+        $.ajax({
+            type: 'GET',
+            url: '/planeten',
+            contentType: 'application/json'
+
+            //Bei Erfolg wird zeile mithilfe der Funktion zeileEinfuegen eingefuegt
+            //zudem ein alert, dass daten erfolgreich geladen wurden
+            }).done(function(data) {
+            data.forEach(function(planet) {
+                zeileEinfuegen(planet);
+                alert(data.Planet+ 'Daten wurden erfolgreich geladen.')
+                });
+
+            //falls ein fehler aufgetreten ist wird eine fehlermeldung (popup) ausgegeben
+            }).fail(function(e) {
+                alert('Laden der Daten fehlgeschlagen. (' + JSON.stringify(e) + ')');
+                });
+                
+            //Funktion zur erweiterung der Tabelle (durch einfügen von Spalten)
+            function zeileEinfuegen(planet) {
+                $('#Tabelle').append('<tr><td>' + planet.Planet + '</td><td>' + planet.Durchmesser + '</td><td>' + planet.Entfernung + '</td></tr>');
+                }
+    });
+
+</script>
+</head>
+<body>
+    <!--Erstellt die Eingabefelder sowie den LOS!-Button-->
+    <form id="Formular" name="Formular" action="/planeten">
+        Planet: <input id="Planet" type="text" name="Planet"><br>
+        Durchmesser: <input id="Durchmesser" type="text" name="Durchmesser"><br>
+        Entfernung_Sonne: <input id="Entfernung" type="text" name="Entfernung"><br>
+        <input id="submit" name="submit" type="submit" value="Los!">
+    </form>
+    <br>
+
+        <!--Erstellt die Tabelle (zunächst alle überschriften der spalten)-->
+    <table border='1' id='Tabelle'>
+        <tr>
+            <th>Planet</th>
+            <th>Durchmesser</th>
+            <th>Entfernung</th>
+        </tr>
+    </table>
+    
+</body>
+</html>
