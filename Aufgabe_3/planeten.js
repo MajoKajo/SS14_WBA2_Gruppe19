@@ -1,6 +1,5 @@
 //benötigte 'requires'
 var express = require('express');
-<<<<<<< HEAD
 var mongo = require('mongoskin');
 var http = require('http');
 var faye = require('faye');
@@ -16,17 +15,22 @@ var faye = require('faye');
 {"Planet":"Uranus", "Durchmesser":"51.118", "Entfernung":"2.735 - 3.005 Mio"},
 {"Planet":"Neptun", "Durchmesser":"49.532", "Entfernung":"4.456 - 4.537 Mio"}
 ];*/
-=======
+<<<<<<< HEAD
+<<<<<<< HEAD
 var mongoDB = require('mongoskin');
+=======
+
+>>>>>>> FETCH_HEAD
+=======
+
+>>>>>>> FETCH_HEAD
 /* Verbindung zur Datenbank herstellen
 * auto_reconnect=true: 
 * Bei Verbinsungsabbrüchen zur DB wird die Verbindung automatisch wieder hergestellt
 * safe = true: Ist später wichtig, damit in Callbacks bei DB-Zugriffen
 * die Parameter "err" und "result" in Callbacks gefuellt werden.
 */
-var db = mongoDB.db('mongodb://localhost/mydb?auto_reconnect=true', {
-	safe: true
-});
+var db = mongo.db('mongodb://localhost/planets?auto_reconnect=true', {safe:true});
 
 //Collection "Planeten" binden
 db.bind("planeten");
@@ -34,14 +38,18 @@ db.bind("planeten");
 // Anschließend kann auf die Collection über das db-Objekt zugegriffen werden
 var planetenCollection = db.planeten;
 
-planetenCollection.insert({
-	planet: "Max Mustermann",
-	eintrag: "bla"
+//Express und http-Server erstellen
+var app = express();
+var server = http.createServer(app);
 
-}, function(err, planeten) {
-
+//Nodeadapter auf faye konfigurieren
+var bayeux = new faye.NodeAdapter({
+	mount: '/faye',
+	timeout: 45
 });
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 var planeten = [ 
 {"Planet":"Merkur", "Durchmesser":"4.878", "Entfernung":"70"},
 {"Planet":"Venus", "Durchmesser":"12.103,6", "Entfernung":"108,9"},
@@ -52,11 +60,17 @@ var planeten = [
 {"Planet":"Uranus", "Durchmesser":"51.118", "Entfernung":"3.005"},
 {"Planet":"Neptun", "Durchmesser":"49.532", "Entfernung":"4.537"}
 ];
+=======
+//Verbindung des neu-konfigurierten adapters mit dem server
+bayeux.attach(server);
+>>>>>>> FETCH_HEAD
+=======
+//Verbindung des neu-konfigurierten adapters mit dem server
+bayeux.attach(server);
 >>>>>>> FETCH_HEAD
 
-//Express und http-Server erstellen
-var app = express();
-var server = http.createServer(app);
+//PubSub-Client wird erzeugt
+var PubSubClient = bayeux.getClient();
 
 app.configure(function( ){
 	//Verzeichnis für den direkten Zugriff von außen freigeben
@@ -66,19 +80,16 @@ app.configure(function( ){
 	app.use(express.json());
 	app.use(express.urlencoded());
 
-	//möglicher Errorhandler
-	app.use(function(err, req, res, next){
-		console.error(err.stack);
-		res.end(err.status + '' + err.messages);
-	});
 });
 
-//Nodeadapter auf faye konfigurieren
-var bayeux = new faye.NodeAdapter({
-	mount: '/faye',
-	timeout: 45
+//möglicher Errorhandler
+app.use(function(err, req, res, next){
+	console.error(err.stack);
+	res.end(err.status + '' + err.messages);
 });
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 //Verbindung des neu-konfigurierten adapters mit dem server
 bayeux.attach(server);
 
@@ -88,24 +99,29 @@ db.bind('planeten');
 
 var sammlung = db.planeten;
 
-<<<<<<< HEAD
 //PubSub-Client wird erzeugt
 var PubSubClient = bayeux.getClient();
+=======
+>>>>>>> FETCH_HEAD
+=======
+>>>>>>> FETCH_HEAD
  
 app.get('/planeten', function(req, res, next){
 
 	//Daten können/werden aus der Datenbank abgerufen
-	sammlung.findItems(function(err, result) {
+	planetenCollection.findItems(function(err, result) {
 		//Fehlerbehandlung
 		if(err) {
 			next(err);
 		}
 		//JSON-File an Client uebertragen
 		else {
-			resp.writeHead(200, {'Content-Type': 'applicatio/json'});
-			resp.end(JSON.stringify(result));
+			res.writeHead(200, {'Content-Type': 'application/json'});
+			res.end(JSON.stringify(result));
 		}
 	});
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 	//nicht mehr benötigt
 	/*res.writeHead(200, "OK", {'Content-Type': 'text/html'});
@@ -137,19 +153,21 @@ app.get('/planeten', function(req, res, next){
 			planeten.forEach(function(planet){
 				res.write("<tr><td>" +planet.Planet+ "</td><td>" +planet.Entfernung+ "</td><td>" +planet.Durchmesser+ "</td></tr>");
 			});
->>>>>>> FETCH_HEAD
 		
 			res.write("</table>");
     		res.write("<a href='/'>Zurueck</a>"); //Zurück zur Formulardatei*/
 
-<<<<<<< HEAD
 	res.end();*/
+=======
+>>>>>>> FETCH_HEAD
+=======
+>>>>>>> FETCH_HEAD
 });
 
-app.post('/planeten', function(req, resp, next){
+app.post('/planeten', function(req, res, next){
 
 	//Daten an die Datenbank uebergeben
-   sammlung.insert(req.body, function(err, result) {
+   planetenCollection.insert(req.body, function(err, result) {
 
 		//Fehlerbehandlung
 		if(err) {
@@ -164,21 +182,23 @@ app.post('/planeten', function(req, resp, next){
 		}
 	});
 	
-	//Neues Post ( publishen der Daten )
+	//Neuer Post ( publishen der Daten )
 	PubSubClient.publish('/planeten', {
 		'Planet': req.body.Planet,
 		'Durchmesser': req.body.Durchmesser,
 		'Entfernung': req.body.Entfernung
 	}).then(function() { 
 		//wenn der Publish funktioniert
-		resp.writeHead(200, 'OK');
-		resp.write('Daten wurden gesendet.');
-		resp.end();
+		res.writeHead(200, 'OK');
+		res.write('Daten wurden gesendet.');
+		res.end();
 	}, function(error) { 
 		//wenn der Publish nicht funktioniert
 		next(error);
 	});
-=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
 			res.end(JSON.stringify(result));
 		}
 	});
@@ -199,8 +219,18 @@ app.post('/planeten', function(req, res, next){
 			res.end();
 		}
  	});
+
+=======
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 });
-	
 
-app.listen(3000);
+//'server.listen' anstatt 'app.listen' (faye)
+server.listen(3000, function() {
+	console.log('Server listens on port 3000.');
+<<<<<<< HEAD
+});
+=======
+});
+>>>>>>> FETCH_HEAD
