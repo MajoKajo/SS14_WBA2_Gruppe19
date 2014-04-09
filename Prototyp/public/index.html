@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>WBA 2</title>
+        <!--JQuery-->
+        <script src='http://code.jquery.com/jquery-1.11.0.min.js' type='text/javascript'></script>
+        <!--Faye-->
+        <script src='/faye/client.js' type='text/javascript'></script>
+        <script>
+        //jQuery Funktionen sollen erst ausgeführt werden, wenn komplettes Dokument geladen
+        $(document).ready(function(){ 
+
+            //PubSub-Client wird erzeugt
+            var PubSub = new Faye.Client('/faye');
+                
+            //'wba2' Abonnement
+            PubSub.subscribe('/wba2', function(message) {
+                zeileEinfuegen(message);
+        });
+                
+        //Wenn auf "LOS!" gedrückt wird
+        $('#Formular').submit(function(event) {
+
+ 		//Eingegebene Daten aus dem Formular werden über die entsprechenden IDs gespeichert
+        var data = {
+            Kommentar:$("#Kommentar").val()
+        };
+
+        //Der Webserver schickt eine Success-Response an den Client
+        //Bei Erfolg wird ein 'alert' ausgeben und Formularfelder geleert
+        //Bei Misserfolg wird ein missglückter 'alert' ausgegeben
+  		$.ajax({
+			type: 'POST',
+			url: '/wba2',
+			data: JSON.stringify(data),
+			contentType: 'application/json'
+			}).done(function(){
+			     alert('Kommentar wurde hinzugefügt.');
+
+            $("#Formular")[0].reset();
+			}).fail(function(e){
+			     alert('Kommentar konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
+		});
+
+        //Default POST unterdruecken.
+        event.preventDefault();
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '/wba2',
+            contentType: 'application/json'
+
+            //Bei Erfolg wird zeile mithilfe der Funktion zeileEinfuegen eingefuegt
+            //zudem ein alert, dass daten erfolgreich geladen wurden
+            }).done(function(data) {
+            data.forEach(function(){
+                zeileEinfuegen(planet);
+                alert('Daten wurden erfolgreich geladen.')
+            });
+
+            //falls ein fehler aufgetreten ist wird eine fehlermeldung (popup) ausgegeben
+            }).fail(function(e) {
+                alert('Laden der Daten fehlgeschlagen. (' + JSON.stringify(e) + ')');
+                });
+                
+            //Funktion zur erweiterung der Tabelle (durch einfügen von Spalten)
+            function zeileEinfuegen(data) {
+                $('#Kommentare').append('<p>' + data.Kommentar + '</p>');
+                }
+        });
+
+        </script>
+    </head>
+    <body>        
+        <nav id="Module">
+            <h1>WBA 2</h1> <!a href=... >
+        </nav>
+        
+        <aside>
+            <h3>Neuigkeiten</h3>
+        </aside>
+        
+        <article id="Material">
+            <h2>Material X</h2>
+        <!--Erstellt die Tabelle (zunächst alle überschriften der spalten)-->
+        <section border='1' id='Kommentare'>
+            <h3>Kommentare</h3>
+        </section>
+        </article>
+        
+        <!--Erstellt die Eingabefelder sowie den LOS!-Button-->
+        <form id='Formular' name='Formular' action='/wba2'>
+            <table>
+                <thead>
+                    <tr><td>Kommentieren</td></tr>
+                </thead>
+                <tbody>
+                    <tr><td><textarea name="text" rows="10" cols="52" id="Kommentar"></textarea></td></tr>
+                </tbody>
+            </table>
+            <input id="submit" type="submit" name="submit" value="Einreichen">
+        </form>
+    </body>
+</html>
