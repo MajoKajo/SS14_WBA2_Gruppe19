@@ -3,7 +3,7 @@ extends layout
 block content
 	h1.
 		KOMMENTARLISTE
-	table(border="1", style = "max-width: 75%;")
+	table#kommentartabelle(border="1")
 		each kommentar, i in kommentarliste
 			tr
 				td
