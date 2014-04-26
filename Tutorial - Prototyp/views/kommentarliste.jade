@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	h1.
+		KOMMENTARLISTE
+	ul
+		each kommentar, i in kommentarliste
+			li
+				test
+	form#formAddKommentar(name="addkommentar",method="post",action="/addkommentar")
+		textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar", name="kommentar", rows ="10", cols="52")
+		button#btnSubmit(type="submit") Einreichen

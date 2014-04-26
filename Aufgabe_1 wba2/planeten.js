@@ -1,5 +1,6 @@
 var http = require('http');
 var server = http.createServer();
+var mongo = require('mongoskin');
 
 var url = require('url');
 var querystring = require('querystring');
@@ -14,6 +15,20 @@ var planeten = [
 {"Planet":"Uranus", "Durchmesser":"51.118 km", "Entfernung_Sonne":"2.735 - 3.005 Mio km"},
 {"Planet":"Neptun", "Durchmesser":"49.532 km", "Entfernung_Sonne":"4.456 - 4.537 Mio km"}
 ];
+
+/* Verbindung zur Datenbank herstellen
+* auto_reconnect=true: 
+* Bei Verbinsungsabbrüchen zur DB wird die Verbindung automatisch wieder hergestellt
+* safe = true: Ist später wichtig, damit in Callbacks bei DB-Zugriffen
+* die Parameter "err" und "result" in Callbacks gefuellt werden.
+*/
+var db = mongo.db('mongodb://localhost/planeten?auto_reconnect=true', {safe:true});
+
+//Collection "Planeten" binden
+db.bind("planeten");
+
+// Anschließend kann auf die Collection über das db-Objekt zugegriffen werden
+var planetenCollection = db.planeten;
 
 server.on('request', function(req, res){
 //startanzeige in der konsole
@@ -43,6 +58,23 @@ req.on('end', function(){
         res.write("504 Fehlercode... Sry!")
         res.end();
     };
+
+//Daten an die Datenbank uebergeben
+   planetenCollection.insert(req.body, function(err, result) {
+
+        //Fehlerbehandlung
+        if(err) {
+            //next(err);
+        }
+
+        //JSON-File an Client uebertragen
+        else {
+            //resp.writeHead(200, 'OK');
+            //resp.write('Daten wurden gespeichert.');
+            //resp.end();
+        }
+    });
+
 //erstellen der tabelle
 //erst kopf
     res.writeHead(200, "OK", {'Content-Type': 'text/html'});
