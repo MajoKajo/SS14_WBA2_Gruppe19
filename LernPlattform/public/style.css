@@ -1,0 +1,18 @@
+body {
+    height: 100%;
+}
+aside {
+	float: right;
+    height: 100%; 
+    text-align: center;
+    color: black;
+}
+#Neuigkeiten {
+	background-color: black;
+	color: white;
+}
+#Module {
+	background-color: black;
+	color: white;
+}
+

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Material 1</title>
+		<!--JQuery-->
+		<script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
+		<!--CSS-->
+        <link href="style.css" type="text/css" rel="stylesheet">
+
+		<script>
+			$(document).ready(function(){
+
+				$('.kommi').submit(function(e){
+					e.preventDefault();
+
+					var daten = { "kommentar": $('.kommentarfeld').val(),};
+
+					$.ajax({
+						type: 'POST',
+						url: '/addkommentar',
+						data: JSON.stringify(daten),
+						contentType: 'application/json'
+					}).done(function(){
+						alert('Kommentar wurde hinzugefuegt.');
+						$('.kommi')[0].reset();
+					}).fail(function(e){
+						alert('Kommentar konnte nicht hinzugefuegt werden.');
+					});
+				});
+
+				$.ajax({
+					type: 'GET',
+					url: '/kommentar',
+					contentType: 'application/json'
+				}).done(function(data){
+					data.forEach(function(kommentar){
+						addRow(kommentar);
+					});
+				}).fail(function(error){
+					alert('Fehler beim Holen der Daten. (' + JSON.stringify(error) + ')');
+				});
+
+				//Zeile in Tabelle einfügen/anhaengen
+				function addRow(kommentar){
+					$('.kommentartabelle').append('<tr><td>' + kommentar.kommentar + '</td></tr>');
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<nav id="Module">
+            <div>WBA 2 - DB 1 - CGA</div>
+
+                <aside>
+                    <h3 id="Neuigkeiten">Neuigkeiten</h3>
+                    <p>Folie 1 aktualisiert!</p>
+                </aside>
+        </nav>
+
+        <h1>WBA 2</h1>
+
+		<h2>Material 1</h2>
+		<img src="http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg", width="50%", border="1">
+		<table border='1', class='kommentartabelle', name='kommentartabelle'>
+			<tr>
+				<th>Kommentare</th>
+			</tr>
+		</table>
+		<!--Erstellt die Eingabefelder sowie den Einreichen-Button-->
+        <form class='kommi' name='kommi' action='/addkommentar'>
+            <table>
+                    <tr><td><textarea class="kommentarfeld" name="kommentarfeld" rows="10" cols="52" style="resize: none;" placeholder="Kommentieren..."></textarea></td></tr>
+            </table>
+            <input id="submit" type="submit" name="submit" value="Einreichen">
+        </form>
+
+		<h2>Material 2</h2>
+		<img src="http://images.fotocommunity.de/bilder/archiv-2011-2012/alltag-mit-alzheimer/oma-berta-9b8ded03-8a95-4cd5-b37b-c9fe66571896.jpg"  width="50%">
+		<table border='1', class='kommentartabelle', name='kommentartabelle'>
+			<tr>
+				<th>Kommentare</th>
+			</tr>
+		</table>
+		<!--Erstellt die Eingabefelder sowie den Einreichen-Button-->
+        <form class='kommi' name='kommi' action='/addkommentar'>
+            <table>
+                    <tr><td><textarea class="kommentarfeld" name="kommentarfeld" rows="10" cols="52" style="resize: none;" placeholder="Kommentieren..."></textarea></td></tr>
+            </table>
+            <input id="submit" type="submit" name="submit" value="Einreichen">
+        </form>
+
+	</body>
+</html>
