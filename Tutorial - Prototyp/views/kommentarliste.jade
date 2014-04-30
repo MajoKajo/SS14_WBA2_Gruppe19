@@ -1,13 +1,27 @@
 extends layout
 
 block content
+	h3.
+		Navigation
+	form#formnavleiste(name="navleiste")
+		button#btnSubmit2(type="submit", formaction="newuser") Anmeldung
+		button#btnSubmit2(type="submit", formaction="userlist") Home
+
 	h1.
-		KOMMENTARLISTE
+		Material 1
+
+	p
+		img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", height="40%", alt='bild')
+
+	h3.
+		Kommentare
+
 	table#kommentartabelle(border="1")
 		each kommentar, i in kommentarliste
 			tr
 				td
 					p()= kommentar.kommentar
+
 	form#formAddKommentar(
 	name="addkommentar",method="post",action="/addkommentar")
 		textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar", name="kommentar", rows ="10", cols="52")
