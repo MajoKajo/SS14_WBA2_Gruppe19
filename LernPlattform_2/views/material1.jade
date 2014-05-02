@@ -1,0 +1,41 @@
+extends layout
+
+block content
+	h1= title
+
+	h3.
+		Navigation
+	form#formnavleiste(name="navleiste")
+		button#btnHome(type="submit", formaction="/") Home
+		button#btnAnmeldung(type="submit", formaction="newuser") Anmeldung
+		button#btnWBA2(type="submit", formaction="module") Module
+
+	aside
+		h3.
+			Ticker
+		table#Ticker
+			tr
+				td
+
+
+
+	h1.
+		Material 1
+
+	p
+		img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", alt='bild')
+
+	h3.
+		Kommentare
+
+	table#kommentartabelle(border="0")
+		each kommentar, i in material1
+			tr
+				td
+					p()= kommentar.kommentar
+
+	form#formAddKommentar(
+		name="addkommentar",method="post",action="/addkommentar")
+			textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar", name="kommentar", rows ="10", cols="52")
+			br
+			button#btnSubmit(type="submit") Einreichen

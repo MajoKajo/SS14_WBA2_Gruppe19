@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h3.
+			Navigation
+		form#formnavleiste(name="navleiste")
+			button#btnSubmit2(type="submit", formaction="home") Home
+			button#btnSubmit2(type="submit", formaction="newuser") Anmeldung
+
+	h1.
+		User List   
+	ul 
+		each user, i in userlist
+			li
+				p()= user.username

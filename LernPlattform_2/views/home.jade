@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h3.
+			Navigation
+		form#formnavleiste(name="navleiste")
+			button#btnHome(type="submit", formaction="/") Home
+			button#btnAnmeldung(type="submit", formaction="newuser") Anmeldung
+			
+    
+	h1.
+		Lernplattform
+	p Welcome to #{title}
