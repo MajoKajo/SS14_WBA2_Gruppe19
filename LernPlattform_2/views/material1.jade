@@ -7,8 +7,8 @@ block content
 		Navigation
 	form#formnavleiste(name="navleiste")
 		button#btnHome(type="submit", formaction="/") Home
-		button#btnAnmeldung(type="submit", formaction="newuser") Anmeldung
-		button#btnWBA2(type="submit", formaction="module") Module
+		button#btnAnmeldung(type="submit", formaction="../newuser") Anmeldung
+		button#btnWBA2(type="submit", formaction="../module") Module
 
 	aside
 		h3.
@@ -28,14 +28,14 @@ block content
 	h3.
 		Kommentare
 
-	table#kommentartabelle(border="0")
+	table#kommentartabelle(border="1")
 		each kommentar, i in material1
 			tr
 				td
 					p()= kommentar.kommentar
 
 	form#formAddKommentar(
-		name="addkommentar",method="post",action="/addkommentar")
+		name="addkommentar",method="post",action="/wba2/addkommentar")
 			textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar", name="kommentar", rows ="10", cols="52")
 			br
 			button#btnSubmit(type="submit") Einreichen
