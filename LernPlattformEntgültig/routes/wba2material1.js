@@ -9,7 +9,7 @@ exports.ladekommentare = function(db){
 	};
 };
 
-exports.addkommentare = function(db){
+exports.addkommentare = function(db, PubSubClient){
 	return function(req, res){
 		db.collection('kommentarcollectionwba2').insert({
 			"material": req.body.textareaKommentar,
@@ -18,7 +18,7 @@ exports.addkommentare = function(db){
 				res.send("There was a problem adding the information to the Database.");
 			}
 			else{
-				res.redirect("/home/wba2/material1");
+				res.redirect("http://localhost:3000/home/wba2/material1");
 			}
 		});
 	};
