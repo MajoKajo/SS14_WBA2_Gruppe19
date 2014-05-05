@@ -54,7 +54,7 @@ app.get('/home/wba2/material1', wba2material1.ladekommentare(db));
 app.post('/wba2/material1/addkommentar', wba2material1.addkommentare(db, PubSubClient));
 
 app.get('/home/cga/material1', cgamaterial1.ladekommentare(db));
-app.post('/cga/material1/addkommentar', cgamaterial1.addkommentare(db));
+app.post('/cga/material1/addkommentar', cgamaterial1.addkommentare(db, PubSubClient));
 
 app.use(function(req, res, next){
 	res.status(404);

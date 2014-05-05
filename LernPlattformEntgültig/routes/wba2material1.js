@@ -18,7 +18,15 @@ exports.addkommentare = function(db, PubSubClient){
 				res.send("There was a problem adding the information to the Database.");
 			}
 			else{
-				res.redirect("http://localhost:3000/home/wba2/material1");
+				PubSubClient.publish('/wba2/material1/addkommentar',{
+					"material": "Ein neues Kommentar wurde hinzugefügt",
+				}).then(function(){
+					res.writeHead(200, 'OK');
+					res.end;
+				}, function(error){
+					next(error);
+				});
+				res.redirect('/home/wba2/material1');
 			}
 		});
 	};

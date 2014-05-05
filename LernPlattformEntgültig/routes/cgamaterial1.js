@@ -9,7 +9,7 @@ exports.ladekommentare = function(db){
 	};
 };
 
-exports.addkommentare = function(db){
+exports.addkommentare = function(db, PubSubClient){
 	return function(req, res){
 		db.collection('kommentarcollectioncga').insert({
 			"material": req.body.textareaKommentar,
@@ -18,7 +18,15 @@ exports.addkommentare = function(db){
 				res.send("There was a problem adding the information to the Database.");
 			}
 			else{
-				res.redirect("/home/cga/material1");
+				PubSubClient.publish('/cga/material1/addkommentar',{
+					"material": "Ein neues Kommentar wurde hinzugefügt",
+				}).then(function(){
+					res.writeHead(200, 'OK');
+					res.end;
+				}, function(error){
+					next(error);
+				});
+				res.redirect('/home/cga/material1');
 			}
 		});
 	};

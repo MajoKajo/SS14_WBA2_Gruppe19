@@ -1,23 +1,32 @@
 $(document).ready(function(){
-
 	var pubSub = new Faye.Client('/faye'); 
 
-
-	pubSub.subscribe('/kommentar', function(message){
-		tickerAktualisieren();
+	$('#aboCheckboxWBA2').click(function() {
+		if($('#aboCheckboxWBA2').prop('checked')  == true){
+			pubSub.subscribe('/wba2/material1/addkommentar',tickerAktualisieren);
+		}
+		else {
+			pubSub.unsubscribe('/wba2/material1/addkommentar');
+		}
 	});
 
-	function tickerAktualisieren(){
+	$('#aboCheckboxCGA').click(function() {
+		if($('#aboCheckboxCGA').prop('checked')  == true){
+			pubSub.subscribe('/cga/material1/addkommentar',tickerAktualisieren);
+		}
+		else {
+			pubSub.unsubscribe('/cga/material1/addkommentar');
+		}
+	});
+	
 
+	function tickerAktualisieren(message){
 		var tabelleninhalt = '';
 
-		$.getJSON('/kommentar', function(penis){
+		tabelleninhalt += '<tr>';
+		tabelleninhalt += '<td>' + message.material + '</td>';
+		tabelleninhalt += '</tr>';
 
-			tabelleninhalt += '<tr>';
-			tabelleninhalt += '<td>' + penis.material + '</td>';
-			tabelleninhalt += '</tr>';
-
-			$('#Ticker table tbody').html(tabelleninhalt);
-		});
+		$('#Ticker table tbody').html(tabelleninhalt);
 	};
 });
