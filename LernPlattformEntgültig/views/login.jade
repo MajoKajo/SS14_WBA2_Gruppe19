@@ -1,9 +1,8 @@
 extends layout
 
 block content
-	h1= title
+	h1.
+		Bitte melde dich an.
 
-	table#loginTable
-		tr
-			td 
-				a(href="http://localhost:3000/home") Home 
+	form#formnavleiste(name="navleiste")
+		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home

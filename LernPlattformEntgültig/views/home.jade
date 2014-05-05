@@ -3,14 +3,7 @@ extends layout
 block content
 	h1= title
 
-
-	table#homeTable
-		tr
-			td 
-				a(href="http://localhost:3000/home/wba2") WBA2
-		tr
-			td
-				a(href="http://localhost:3000/home/cga") CGA
-		tr
-			td
-				a(href="http://localhost:3000/") Logout
+	form#formnavleiste(name="navleiste")
+		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
+		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA 2
+		button#btnCGA(type="submit", formaction="http://localhost:3000/home/cga") Modul CGA

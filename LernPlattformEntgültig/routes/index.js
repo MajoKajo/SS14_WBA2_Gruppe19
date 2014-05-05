@@ -10,10 +10,10 @@ exports.home = function(req, res){
 
 //WBA2
 exports.wba2 = function(req, res){
-	res.render('wba2', {title: 'Das Fach WBA2'});
+	res.render('wba2', {title: 'WBA2'});
 };
 
 //CGA
 exports.cga = function(req, res){
-	res.render('cga', {title: 'Das Fach CGA'});
+	res.render('cga', {title: 'CGA'});
 };

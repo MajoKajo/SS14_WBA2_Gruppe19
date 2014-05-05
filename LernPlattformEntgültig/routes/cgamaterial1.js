@@ -19,7 +19,7 @@ exports.addkommentare = function(db, PubSubClient){
 			}
 			else{
 				PubSubClient.publish('/cga/material1/addkommentar',{
-					"material": "Ein neues Kommentar wurde hinzugefügt",
+					"material": "CGA - Material 1 wurde kommentiert.",
 				}).then(function(){
 					res.writeHead(200, 'OK');
 					res.end;

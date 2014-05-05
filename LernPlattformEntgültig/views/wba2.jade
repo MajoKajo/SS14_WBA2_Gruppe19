@@ -3,10 +3,13 @@ extends layout
 block content
 	h1= title
 
+	form#formnavleiste(name="navleiste")
+		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
+		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA 2
+		button#btnCGA(type="submit", formaction="http://localhost:3000/home/cga") Modul CGA
+	br
+	br
 	table#wba2MaterialTable
 		tr
 			td 
 				a(href="http://localhost:3000/home/wba2/material1") Material 1
-		tr
-			td
-				a(href="http://localhost:3000/") Logout

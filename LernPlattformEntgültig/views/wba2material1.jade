@@ -1,28 +1,14 @@
 extends layout
 
 block content
-	h1= title
-	h3.
-		Navigation
-	form#formnavleiste(name="navleiste")
-		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
-		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA2
-
-	aside
-		p ABONNIEREN!
-			input#aboCheckboxWBA2(name="aboCheckboxWBA2", type="checkbox")
-		h3.
-			Ticker
-
-		#Ticker
-			table
-				thead
-					th Aktualisierungen
-				tbody
-
 
 	h1.
-		Material1
+		Material 1
+
+	form#formnavleiste(name="navleiste")
+		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
+		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA 2
+		button#btnCGA(type="submit", formaction="http://localhost:3000/home/cga") Modul CGA
 
 	p
 		img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", alt='bild')
