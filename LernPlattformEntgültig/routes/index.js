@@ -5,15 +5,15 @@ exports.login = function(req, res){
 
 //HOME
 exports.home = function(req, res){
-	res.render('home', {title: 'Homebildschirm'});
+	res.render('home', {title: 'Deine Studienfächer'});
 };
 
 //WBA2
 exports.wba2 = function(req, res){
-	res.render('wba2', {title: 'WBA2'});
+	res.render('wba2', {title: 'Lernmaterialien für das Fach WBA2'});
 };
 
 //CGA
 exports.cga = function(req, res){
-	res.render('cga', {title: 'CGA'});
+	res.render('cga', {title: 'Lernmaterialien für das Fach CGA'});
 };

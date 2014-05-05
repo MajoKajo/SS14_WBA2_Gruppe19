@@ -32,7 +32,7 @@ var PubSubClient = bayeux.getClient();
 //app konfigurieren(umgebung, middleware)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -56,24 +56,7 @@ app.post('/wba2/material1/addkommentar', wba2material1.addkommentare(db, PubSubC
 app.get('/home/cga/material1', cgamaterial1.ladekommentare(db));
 app.post('/cga/material1/addkommentar', cgamaterial1.addkommentare(db, PubSubClient));
 
-app.use(function(req, res, next){
-	res.status(404);
 
-	//res mit html seite
-	if(req.accepts('html')) {
-		res.render('404', {url: req.url});
-		return;
-	};
-
-	//res mit json
-	if(req.accepts('json')) {
-		res.send({error: 'JSON nicht gefunden!'});
-		return;
-	};
-
-	//standard der normalen text. send()
-	res.type('txt').send('txt nicht gefunden!');
-});
 
 //server port+console login
 server.listen(app.get('port'), function(){

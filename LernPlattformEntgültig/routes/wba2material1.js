@@ -19,7 +19,8 @@ exports.addkommentare = function(db, PubSubClient){
 			}
 			else{
 				PubSubClient.publish('/wba2/material1/addkommentar',{
-					"material": "WBA 2 - Material 1 wurde kommentiert.",
+					"material": "WBA2 Material 1 wurde aktualisiert.",
+					"hyperlink": "/home/wba2/material1",
 				}).then(function(){
 					res.writeHead(200, 'OK');
 					res.end;

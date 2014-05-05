@@ -2,13 +2,35 @@ extends layout
 
 block content
 
-	h1.
-		Material 1
-
+	h3.
+		Navigation
 	form#formnavleiste(name="navleiste")
-		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
-		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA 2
-		button#btnCGA(type="submit", formaction="http://localhost:3000/home/cga") Modul CGA
+		button#btnHome(type="submit", formaction="/home") Home
+		button#btnZurueck(type="submit", formaction="/home/wba2") Zurück
+		button#btnLogout(type="submit", formaction="/") Logout
+
+	h1.
+		Material1 WBA2: Ressourcen und Topics
+
+	aside#sidebar
+
+		#Bewertung
+			table
+				thead
+					th Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
+					th
+						form#formBewertung(name="formBewertung")
+							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
+							button#btnBewertung(type="submit", name="btnBewertung") Bewertung abschicken
+				
+		p Keine änderung verpassen :
+			input#aboCheckboxWBA2(name="aboCheckboxWBA2", type="checkbox")
+
+		#Ticker
+			table
+				thead
+					th Aktualisierungen
+				tbody
 
 	p
 		img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", alt='bild')

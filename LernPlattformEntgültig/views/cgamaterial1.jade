@@ -1,16 +1,39 @@
 extends layout
 
 block content
-	h1.
-		Material 1
 
+	h3.
+		Navigation
 	form#formnavleiste(name="navleiste")
-		button#btnHome(type="submit", formaction="http://localhost:3000/home") Home
-		button#btnWBA2(type="submit", formaction="http://localhost:3000/home/wba2") Modul WBA 2
-		button#btnCGA(type="submit", formaction="http://localhost:3000/home/cga") Modul CGA
+		button#btnHome(type="submit", formaction="/home") Home
+		button#btnZurueck(type="submit", formaction="/home/cga") Zurück
+		button#btnLogout(type="submit", formaction="/") Logout
+
+	h1.
+		Material1 CGA: Was genau ist CGA?
+
+	aside#sidebar
+
+		#Bewertung
+			table
+				thead
+					th Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
+					th
+						form#formBewertung(name="formBewertung")
+							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
+							button#btnBewertung(type="submit", name="btnBewertung") Bewertung abschicken
+
+		p Keine änderung verpassen :
+			input#aboCheckboxCGA(name="aboCheckboxCGA", type="checkbox")
+
+		#Ticker
+			table
+				thead
+					th Aktualisierungen
+				tbody
 
 	p
-		img(border="1", src='http://www.fotos-hochladen.net/view/prsiwba2005xgh324yal9.jpg', width="60%", alt='bild')
+		img(border="1", src='http://www.tu-chemnitz.de/informatik/RA/news/stack/kompendium/vortraege_96/Graphik/attrib.jpg', width="60%", alt='bild')
 
 	h3.
 		Kommentare
