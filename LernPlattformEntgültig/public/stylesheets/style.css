@@ -1,6 +1,6 @@
 body {
-  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+        font-family: "Montserra", Arial, sans-serif; font-weight:100;
+    }
 
 a {
 	text-decoration: none;
@@ -20,27 +20,39 @@ a {
 }
 
 h1 {
-	position: static;
-	font-size: 60px;
+	font-family: "Ubuntu", Arial, sans-serif; font-weight:200;
+    position: static;
+	font-size: 50px;
 	text-align: center;
 	background-color: orange;
 	color: white;
 }
 
+/*Ticker, Bewertung*/
 aside {
 	position: fixed;
     color: black;
     text-align: right;
     font-size: 12px;
-    left: 80%;
-    top: 15%;
+    left: 85%;
+    top: 27%;
 }
 
+/*
 #seitenleiste {
 	position: absolute;
 	background-color: lightblue;
 	width: 220px;
 	top: 0;
 	bottom: 0;
-	left: 78%;
+	left: 80%;
+}
+*/
+
+#Bewertung {
+    position:relative;
+    width: 500px;
+    top: 50%;
+    
+
 }
