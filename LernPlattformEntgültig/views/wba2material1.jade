@@ -5,9 +5,9 @@ block content
 	h3.
 		Navigation
 	form#formnavleiste(name="navleiste")
-		button#btnHome(type="submit", formaction="/home") Home
+		button#btnHome Home
 		button#btnZurueck(type="submit", formaction="/home/wba2") Zurück
-		button#btnLogout(type="submit", formaction="/") Logout
+		button#btnLogout Logout
 
 	h1.
 		Material1 WBA2: Ressourcen und Topics
@@ -23,8 +23,10 @@ block content
 							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
 							button#btnBewertung(type="submit", name="btnBewertung") Bewertung abschicken
 				
-		p Keine änderung verpassen :
-			input#aboCheckboxWBA2(name="aboCheckboxWBA2", type="checkbox")
+		#Subscribe
+			fieldset
+				button#btnSubWba2 Abonnieren
+				button#btnUnsubWba2 Deabonnieren
 
 		#Ticker
 			table

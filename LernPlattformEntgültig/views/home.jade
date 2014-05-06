@@ -5,19 +5,27 @@ block content
 	h3.
 		Navigation
 	form#formnavleiste(name="navleiste")
-		button#btnLogout(type="submit", formaction="/") Logout
+		button#btnLogout Logout
 
 	h1= title
+	
+	#userDaten
+		table
+			thead
+				th Deine Daten
+			tbody
 
 	aside#sidebar
-		p Keine änderung verpassen :
-			input#aboCheckboxHOME(name="aboCheckboxHOME", type="checkbox")
 
 		#Ticker
 			table
 				thead
 					th Aktualisierungen
 				tbody
+
+	#button
+		form
+			button#buttn dein name
 
 
 	table#homeTable

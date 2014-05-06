@@ -5,9 +5,9 @@ block content
 	h3.
 		Navigation
 	form#formnavleiste(name="navleiste")
-		button#btnHome(type="submit", formaction="/home") Home
+		button#btnHome Home
 		button#btnZurueck(type="submit", formaction="/home/cga") Zurück
-		button#btnLogout(type="submit", formaction="/") Logout
+		button#btnLogout Logout
 
 	h1.
 		Material1 CGA: Was genau ist CGA?
@@ -23,8 +23,10 @@ block content
 							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
 							button#btnBewertung(type="submit", name="btnBewertung") Bewertung abschicken
 
-		p Keine änderung verpassen :
-			input#aboCheckboxCGA(name="aboCheckboxCGA", type="checkbox")
+		#Subscribe
+			fieldset
+				button#btnSubCga Abonnieren
+				button#btnUnsubCga Deabonnieren
 
 		#Ticker
 			table
