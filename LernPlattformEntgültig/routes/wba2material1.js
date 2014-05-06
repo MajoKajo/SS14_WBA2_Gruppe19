@@ -15,7 +15,7 @@ exports.addkommentare = function(db, PubSubClient){
 			"material": req.body.textareaKommentar,
 		}, function(err, result){
 			if(err){
-				res.send("There was a problem adding the information to the Database.");
+				res.send("Es gab einen Fehler beim Einfügen in die Datenbank.");
 			}
 			else{
 				PubSubClient.publish('/wba2/material1/addkommentar',{

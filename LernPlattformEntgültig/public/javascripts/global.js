@@ -111,19 +111,19 @@ $(document).ready(function(){
 		else{
 		window.sessionStorage.setItem("SubWba2Mat1", "ja");
 		window.location.href='/home/wba2/material1';
-		alert("Lernmaterial wurde aboniert.");
+		alert("Lernmaterial wurde abonniert.");
 		}
 	};
 	//wba2 material1 deabo
 	function deleteInputSubWba2Mat1(wert){
 		wert.preventDefault();
 		if(window.sessionStorage.getItem("SubWba2Mat1") != "ja"){
-			alert("Um deabonieren zu können müssen sie zunächst das Lernmaterial abonnieren")
+			alert("Um deabonnieren zu können müssen sie zunächst das Lernmaterial abonnieren")
 		}
 		else{
 		window.sessionStorage.removeItem("SubWba2Mat1");
 		window.location.href='/home/wba2/material1';
-		alert("Lernmaterial wurde deaboniert.");
+		alert("Lernmaterial wurde deabonniert.");
 		}
 	};
 	//cga material1 abo
