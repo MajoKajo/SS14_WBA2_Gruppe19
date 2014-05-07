@@ -1,0 +1,167 @@
+body {
+        font-family: "Montserra", Arial, sans-serif; font-weight:100;
+        background:url(http://assets.atlasobscura.com/assets/graph-bkg-0a2f1fd51313546c1668b64aa18bc82f.jpg);
+        margin:0 auto;
+    }
+
+#logo {
+	position: absolute;
+	margin-top:5px;
+	margin-left:120px;
+}
+
+#balkenoben {
+	background-color: #000000;
+	height: 120px;
+	margin:0 auto;
+	color: white;
+}
+
+#balkenoben h1 {
+	position: relative;
+	text-align: center;
+	color: #686460;
+	top: 20px;
+	margin: 0 auto;
+}
+
+#balkenunten {
+	top: 120px;
+	margin:0 auto;
+	background-color: #4b4641;
+	height: 50px;
+	box-shadow: 0px 3px 5px #000;
+}
+
+a {
+	text-decoration: none;
+	color: #909084;
+}
+
+#balkenunten a {
+	position: relative;
+	top: 15px;
+}
+
+#balkenunten div:hover{
+	background-color: #2d2a26;
+}
+
+#logoutbtn {
+	position: absolute;
+	text-align: center;
+	right: 100px;
+	top: 120px;
+	background-color: #4b4641;
+	height: 50px;
+	width: 100px;
+}
+
+#cgabtn {
+	position: absolute;
+	text-align: center;
+	right: 201px;
+	top: 120px;
+	background-color: #4b4641;
+	height: 50px;
+	width: 100px;
+}
+
+#cgabtnAktiv {
+	background-color: #686460;
+	position: absolute;
+	text-align: center;
+	right: 201px;
+	top: 120px;
+	height: 50px;
+	width: 100px;
+}
+
+#wba2btn {
+	position: absolute;
+	text-align: center;
+	right: 302px;
+	top: 120px;
+	background-color: #4b4641;
+	height: 50px;
+	width: 100px;
+}
+
+#wba2btnAktiv {
+	position: absolute;
+	text-align: center;
+	right: 302px;
+	top: 120px;
+	background-color: #686460;
+	height: 50px;
+	width: 100px;
+}
+
+#homebtn {
+	position: absolute;
+	text-align: center;
+	right: 403px;
+	top: 120px;
+	background-color: #4b4641;
+	height: 50px;
+	width: 100px;
+}
+
+#homebtnAktiv {
+	position: absolute;
+	text-align: center;
+	right: 403px;
+	top: 120px;
+	background-color: #686460;
+	height: 50px;
+	width: 100px;
+}
+
+#inputAddUsr {
+	position: absolute;
+	right: 50%;
+	left: 50%;
+}
+
+#btnLogin {
+	position:absolute;
+	margin-top:4px;
+	right: 50%;
+	background-color: black;
+	color: white;
+}
+
+#kommentartabelle {
+	min-width: 60%;
+	max-width: 60%; 
+}
+
+/*Ticker, Bewertung*/
+aside {
+	position: fixed;
+    color: black;
+    text-align: right;
+    font-size: 12px;
+    right:;
+    left: 85%;
+    top: 27%;
+}
+
+/*
+#seitenleiste {
+	position: absolute;
+	background-color: lightblue;
+	width: 220px;
+	top: 0;
+	bottom: 0;
+	left: 80%;
+}
+*/
+
+#Bewertung {
+    position:relative;
+    width: 500px;
+    top: 50%;
+    
+
+}

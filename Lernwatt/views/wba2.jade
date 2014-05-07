@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	div#header
+		div#balkenoben
+		div#balkenunten
+			div#homebtn
+				a(href="http://localhost:3000/home") HOME
+			div#wba2btnAktiv
+				a(href="http://localhost:3000/home/wba2") WBA 2
+			div#cgabtn
+				a(href="http://localhost:3000/home/CGA") CGA
+			div#logoutbtn(href="http://localhost:3000")
+				a(href="http://localhost:3000") LOGOUT
+	h1= title
+
+	table#wba2MaterialTable
+		tr
+			td 
+				a(href="http://localhost:3000/home/wba2/material1") Material 1
