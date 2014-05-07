@@ -32,3 +32,31 @@ exports.addkommentare = function(db, PubSubClient){
 		});
 	};
 };
+
+exports.getbewertung = function(db){
+	return function(req, res){
+		db.collection('bewertungenCgaMat1').find().toArray(function (err, items){
+			if(err) {
+				next(err);
+			}
+
+			else{
+				res.json(items);				
+			}
+		});
+	};
+};
+
+exports.addbewertung = function(db){
+	return function(req, res){
+		db.collection('bewertungenCgaMat1').insert(req.body, function(err, result){
+			if(err){
+				res.send("Es gab einen Fehler beim einfügen in die Datenbank.");
+			}
+			else {
+				res.send('');
+			}
+
+		});
+	};
+};

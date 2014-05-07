@@ -50,13 +50,22 @@ app.get('/', routes.login);
 app.get('/home', routes.home);
 app.get('/home/wba2', routes.wba2);
 app.get('/home/cga', routes.cga);
+
+//wba 2 kommentare material1
 app.get('/home/wba2/material1', wba2material1.ladekommentare(db));
 app.post('/wba2/material1/addkommentar', wba2material1.addkommentare(db, PubSubClient));
 
+//cga kommentare material1
 app.get('/home/cga/material1', cgamaterial1.ladekommentare(db));
 app.post('/cga/material1/addkommentar', cgamaterial1.addkommentare(db, PubSubClient));
 
+//wba2 mat1 bewertung
+app.get('/wba2/material1/getbewertung', wba2material1.getbewertung(db));
+app.post('/wba2/material1/addbewertung', wba2material1.addbewertung(db));
 
+//cga mat1 bewertung
+app.get('/cga/material1/getbewertung', cgamaterial1.getbewertung(db));
+app.post('/cga/material1/addbewertung', cgamaterial1.addbewertung(db));
 
 //server port+console login
 server.listen(app.get('port'), function(){
