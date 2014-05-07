@@ -12,49 +12,50 @@ block content
 				a(href="http://localhost:3000/home/CGA") CGA
 			div#logoutbtn(href="http://localhost:3000")
 				a(href="http://localhost:3000") LOGOUT
-	h1.
-		Material1 CGA: Was genau ist CGA?
+	section#content
+		h1.
+			Material1 CGA: Was genau ist CGA?
 
 
-	#BewertungCgaMat1
-		div
-			form#formBewertung(name="formBewertung")
-							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
-							button#btnBewertungCgaMat1 Bewertung abschicken
-			p Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
+		#BewertungCgaMat1
+			div
+				form#formBewertung(name="formBewertung")
+								input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
+								button#btnBewertungCgaMat1 Bewertung abschicken
+				p Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
 
-			table(border="1")
-				thead
-					th Anzahl der Stimmen:
-					th Durchschnitt:
-				tbody
+				table(border="1")
+					thead
+						th Anzahl der Stimmen:
+						th Durchschnitt:
+					tbody
 
-	aside#sidebar
+		aside#sidebar
 
-		#Subscribe
-			fieldset
-				button#btnSubCga Abonnieren
-				button#btnUnsubCga Deabonnieren
+			#Subscribe
+				fieldset
+					button#btnSubCga Abonnieren
+					button#btnUnsubCga Deabonnieren
 
-		#Ticker
-			table
-				thead
-					th Aktualisierungen
-				tbody
+			#Ticker
+				table
+					thead
+						th Aktualisierungen
+					tbody
 
-	p
-		img(border="1", src='http://www.tu-chemnitz.de/informatik/RA/news/stack/kompendium/vortraege_96/Graphik/attrib.jpg', width="60%", alt='bild')
+		p
+			img(border="1", src='http://www.tu-chemnitz.de/informatik/RA/news/stack/kompendium/vortraege_96/Graphik/attrib.jpg', width="500px", alt='bild')
 
-	h3.
-		Kommentare
+		h3.
+			Kommentare
 
-	table#kommentartabelle(border="1")
-		each material, i in cgamaterial1
-			tr
-				td
-					p()= material.material
+		table#kommentartabelle(border="1")
+			each material, i in cgamaterial1
+				tr
+					td
+						p()= material.material
 
-	form#formAddKommentar(name="formAddKommentar", method="post", action="/cga/material1/addkommentar")
-		textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar einfuegen", name="textareaKommentar", rows="10", cols="52")
-		br
-		button#btnSubmit(type="submit") Einreichen
+		form#formAddKommentar(name="formAddKommentar", method="post", action="/cga/material1/addkommentar")
+			textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar einfuegen", name="textareaKommentar", rows="10", cols="52")
+			br
+			button#btnSubmit(type="submit") Einreichen

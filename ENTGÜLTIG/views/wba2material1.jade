@@ -13,50 +13,50 @@ block content
 				a(href="http://localhost:3000/home/CGA") CGA
 			div#logoutbtn
 				a(href="http://localhost:3000") LOGOUT
+	section#content
 
+		h1.
+			Material1 WBA2: Ressourcen und Topics
 
-	h1.
-		Material1 WBA2: Ressourcen und Topics
+		#BewertungWba2Mat1
+			div
+				form#formBewertung(name="formBewertung")
+								input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
+								button#btnBewertungWba2Mat1 Bewertung abschicken
+				p Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
 
-	#BewertungWba2Mat1
-		div
-			form#formBewertung(name="formBewertung")
-							input#inputBewertung(type="text", name="inputBewertung", placeholder="Deine Bewertung")
-							button#btnBewertungWba2Mat1 Bewertung abschicken
-			p Bewerten? Gib eine Zahl zwischen 1 und 10 an (1: Schlecht, 10: Sehr Gut) 
+				table(border="1")
+					thead
+						th Anzahl der Stimmen:
+						th Durchschnitt:
+					tbody
 
-			table(border="1")
-				thead
-					th Anzahl der Stimmen:
-					th Durchschnitt:
-				tbody
-
-	aside#sidebar
+		aside#sidebar
 				
-		#Subscribe
-			fieldset
-				button#btnSubWba2 Abonnieren
-				button#btnUnsubWba2 Deabonnieren
+			#Subscribe
+				fieldset
+					button#btnSubWba2 Abonnieren
+					button#btnUnsubWba2 Deabonnieren
 
-		#Ticker
-			table
-				thead
-					th Aktualisierungen
-				tbody
+			#Ticker
+				table
+					thead
+						th Aktualisierungen
+					tbody
 
-	p
-		img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", alt='bild')
+		p
+			img(border="1", src='http://www.fotos-hochladen.net/uploads/prsiwba200226lz4c9smo.jpg', width="60%", alt='bild')
 
-	h3.
-		Kommentare
+		h3.
+			Kommentare
 
-	table#kommentartabelle(border="1")
-		each material, i in wba2material1
-			tr
-				td
-					p()= material.material
+		table#kommentartabelle(border="1")
+			each material, i in wba2material1
+				tr
+					td
+						p()= material.material
 
-	form#formAddKommentar(name="formAddKommentar", method="post", action="/wba2/material1/addkommentar")
-		textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar einfuegen", name="textareaKommentar", rows="10", cols="52")
-		br
-		button#btnSubmit(type="submit") Einreichen
+		form#formAddKommentar(name="formAddKommentar", method="post", action="/wba2/material1/addkommentar")
+			textarea#textareaKommentar(style = "resize: none;", type="text", placeholder="Kommentar einfuegen", name="textareaKommentar", rows="10", cols="52")
+			br
+			button#btnSubmit(type="submit") Einreichen
