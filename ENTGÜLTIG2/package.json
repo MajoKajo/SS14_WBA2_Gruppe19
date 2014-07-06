@@ -1,0 +1,15 @@
+﻿{
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node lernplattform.js"
+    },
+    "dependencies": {
+        "express": "3.5.2",
+        "jade": "~1.3.0",
+        "faye": "*",
+        "mongodb": "*",
+        "mongoskin": "*"
+    }
+}

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+	div#header
+		div#balkenoben
+		div#balkenunten
+			div#btnHome
+				a() HOME
+			div#wba2btn
+				a(href="http://localhost:3000/home/wba2") WBA 2
+			div#cgabtn
+				a(href="http://localhost:3000/home/CGA") CGA
+			div#btnLogout
+				a() LOGOUT
+	
+	aside#sidebar
+		#Ticker
+			table
+				thead
+					th Aktualisierungen
+				tbody
+	section#content
+		h1.
+			Deine Module
+		h3
+			a(href="http://localhost:3000/home/wba2") WBA2
+			br
+			a(href="http://localhost:3000/home/cga") CGA
+	
